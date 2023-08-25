@@ -14,7 +14,7 @@ import { PrivateRoute } from './PrivateRoute'
 
 function App() {
 
-  axios.defaults.baseURL = 'https://easy-ruby-grasshopper-boot.cyclic.cloud';
+  axios.defaults.baseURL = 'https://chatbackend-production-eef8.up.railway.app';
   axios.defaults.withCredentials = true;
   const [count, setCount] = useState(0)
 

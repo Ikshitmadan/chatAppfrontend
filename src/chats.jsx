@@ -206,7 +206,7 @@ else{
    const reconnect=()=>{
 
     
-    const newWs = new WebSocket("wss://easy-ruby-grasshopper-boot.cyclic.cloud");
+    const newWs = new WebSocket("wss://chatbackend-production-eef8.up.railway.app");
     setws(newWs);
 
     newWs.addEventListener("message", handleMessage);
@@ -225,7 +225,7 @@ else{
 
 console.log(`newWs is fired`);
 
-      let  newWs = new WebSocket("wss://easy-ruby-grasshopper-boot.cyclic.cloud");
+      let  newWs = new WebSocket("wss://chatbackend-production-eef8.up.railway.app/");
       setws(newWs);
 
       newWs.addEventListener("message", handleMessage);
@@ -238,7 +238,7 @@ console.log(`newWs is fired`);
       if (!event.wasClean) {
         console.log('Attempting to reconnect...');
         const reconnectInterval = setInterval(() => {
-          newWs = new WebSocket("wss://easy-ruby-grasshopper-boot.cyclic.cloud");
+          newWs = new WebSocket("wss://chatbackend-production-eef8.up.railway.app");
           newWs.addEventListener('open', () => {
             console.log('Reconnected to WebSocket');
             clearInterval(reconnectInterval);
