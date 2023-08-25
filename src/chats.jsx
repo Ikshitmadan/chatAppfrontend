@@ -78,6 +78,8 @@ export const Chats = () => {
 
     try {
 
+
+      
    const {data}=  await axios.post('/logout');
 
 console.log(data);
@@ -204,7 +206,7 @@ else{
    const reconnect=()=>{
 
     
-    const newWs = new WebSocket("ws://localhost:5000");
+    const newWs = new WebSocket("ws://easy-ruby-grasshopper-boot.cyclic.cloud");
     setws(newWs);
 
     newWs.addEventListener("message", handleMessage);
@@ -223,7 +225,7 @@ else{
 
 console.log(`newWs is fired`);
 
-      let  newWs = new WebSocket("ws://localhost:5000");
+      let  newWs = new WebSocket("ws://easy-ruby-grasshopper-boot.cyclic.cloud");
       setws(newWs);
 
       newWs.addEventListener("message", handleMessage);
@@ -236,7 +238,7 @@ console.log(`newWs is fired`);
       if (!event.wasClean) {
         console.log('Attempting to reconnect...');
         const reconnectInterval = setInterval(() => {
-          newWs = new WebSocket("ws://localhost:5000");
+          newWs = new WebSocket("ws://easy-ruby-grasshopper-boot.cyclic.cloud");
           newWs.addEventListener('open', () => {
             console.log('Reconnected to WebSocket');
             clearInterval(reconnectInterval);
