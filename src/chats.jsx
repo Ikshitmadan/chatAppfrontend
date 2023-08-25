@@ -259,10 +259,9 @@ console.log(`newWs is fired`);
 
 
    useEffect(()=>{
-
     if(selectedUser){
       console.log(`id is ${selectedUser}`);
-      axios.get(`/${selectedUser}`).then(({data})=>{
+      axios.get(`/message/${selectedUser}`).then(({data})=>{
             console.log(`data has arrived`);
       console.log(data);
       setMsg(data);
