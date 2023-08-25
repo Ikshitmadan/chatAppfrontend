@@ -100,13 +100,15 @@ console.log(data);
   const sendMessage=(ev,file)=>{
 
 
-    if(file==null && message===""){
+    // if(file==null && message===""){
 
-      alert(`you cant send empty message`);
+    //   alert(`you cant send empty message`);
 
-      return ;
+    //   return ;
 
-    }
+    // }
+
+    
 
 
     console.log(`sending`);
