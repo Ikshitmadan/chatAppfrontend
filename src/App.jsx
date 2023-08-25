@@ -14,7 +14,7 @@ import { PrivateRoute } from './PrivateRoute'
 
 function App() {
 
-  axios.defaults.baseURL = 'http://https://vercel.com/ikshitmadan/chat-backend:5000';
+  axios.defaults.baseURL = 'https://easy-ruby-grasshopper-boot.cyclic.cloud';
   axios.defaults.withCredentials = true;
   const [count, setCount] = useState(0)
 

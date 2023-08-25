@@ -260,7 +260,7 @@ console.log(`newWs is fired`);
 
     if(selectedUser){
       console.log(`id is ${selectedUser}`);
-      axios.get(`https://vercel.com/ikshitmadan/chat-backend/message/${selectedUser}`).then(({data})=>{
+      axios.get(`/${selectedUser}`).then(({data})=>{
             console.log(`data has arrived`);
       console.log(data);
       setMsg(data);
@@ -292,7 +292,7 @@ console.log(`newWs is fired`);
 
    useEffect(()=>{
 
-    axios.get('https://vercel.com/ikshitmadan/chat-backend/people').then(({data})=>{
+    axios.get('/people').then(({data})=>{
       // console.log(data);
 
     const offline=data.filter((p)=>p._id!=id).filter((c)=>onlineUser.hasOwnProperty(c._id)==false);

@@ -23,7 +23,7 @@ export const Login = () => {
 
         
         try {
-    const {data}=  await axios.post('https://vercel.com/ikshitmadan/chat-backend/login', {
+    const {data}=  await axios.post('/login', {
         username: username,
         password: password
     });

@@ -18,7 +18,7 @@ export const UserContextProvider = ({ children }) => {
     useEffect(()=>{
 
   console.log(`inside useefect of userContextProvider`);
-        axios.get('https://vercel.com/ikshitmadan/chat-backend/profile').then((res)=>{
+        axios.get('/profile').then((res)=>{
                
         setpending(false);
         console.log(res.data);
