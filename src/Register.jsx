@@ -19,7 +19,7 @@ export const Register = () => {
    try
 {        console.log(username);
         console.log(password);
-      const {data} = await axios.post('https://vercel.com/ikshitmadan/chat-backend/register',{
+      const {data} = await axios.post('https://chatbackend-production-eef8.up.railway.app/register',{
             username:username,
             password:password,
             ...(file ? { file: url } : {})
