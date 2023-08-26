@@ -24,26 +24,38 @@ export const Chats = () => {
  const messageRef=useRef(null);
 
  const navigate = useNavigate()
+ const [images,setImages] = useState({});
 
 
-   const showOnline=(data)=>{
+ const showOnline=(data)=>{
 
-    const obj={};
+  const obj={};
+const o1={}
+  data.forEach(element => {
 
-    data.forEach(element => {
-
-      const {userId,username}=element;
-
-      obj[userId]=username;
+    const {userId,username,img}=element;
       
-    });
-
-    console.log(obj);
-
-    setOnlineUser(obj);
+    console.log(img);
+    obj[userId]=username;
 
 
-   }
+    if(userId!=id){
+      o1[userId]=img;
+    }
+   
+    
+  });
+
+  console.log(obj);
+
+  console.log(o1);
+
+  setOnlineUser(obj);
+
+  setImages(o1);
+
+
+ }
 
    const {username,id}=useContext(UserContext);
   
@@ -301,11 +313,14 @@ console.log(`newWs is fired`);
     const offline=data.filter((p)=>p._id!=id).filter((c)=>onlineUser.hasOwnProperty(c._id)==false);
 
     console.log(offline);
-      
-    setofflineUser(offline);
-    }).catch((err)=>{
-      console.log(err);
-    })
+
+
+   offline.forEach((c) => {
+  setImages(prev => ({
+    ...prev,
+    [c._id]: c.img
+  }));
+});
 
    },[onlineUser])
        
