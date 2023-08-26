@@ -341,6 +341,9 @@ console.log(`newWs is fired`);
 console.log(Msg);
 
 console.log(onlineExcludingMe);
+console.log(offlineUser);
+
+
   return (
     <div className='h-screen  flex'> 
     <div className="w-1/4 pl-3 pt-3">
