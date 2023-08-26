@@ -356,14 +356,14 @@ console.log(images);
   <div className='overflow-auto h-3/4	'>
  <div className="onlineUsers font-semibold  text-xl  font-sans ">
 
-{Object.keys(onlineExcludingMe).map((key,idx)=>(
+{Object.keys(onlineExcludingMe).map((key)=>(
 <div className={ selectedUser==key?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
 }   onClick={()=>setSelectedUser(key)} >
 
 
   <div class="relative">
    
-<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full ${colors[(idx/colors.length)]}`}>
+<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full ${colors[Math.floor(Math.random() * colors.length)]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{onlineUser[key].charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"/>
 
@@ -387,13 +387,13 @@ console.log(images);
 <div className="offlineUsers font-semibold  text-xl  font-sans ">
 
       
-{offlineUser.map((user,idx)=>(
+{offlineUser.map((user)=>(
 
   <div  className={ selectedUser==user._id?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
 }   onClick={()=>setSelectedUser(user._id)}>
  
  <div class="relative">
- <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden${colors[(idx/colors.length)]}`}>
+ <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden${colors[Math.floor(Math.random() * colors.length)]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{user.username.charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
 </span>
