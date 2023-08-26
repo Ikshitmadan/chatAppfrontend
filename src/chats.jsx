@@ -307,22 +307,24 @@ console.log(`newWs is fired`);
      
 
    useEffect(() => {
-    axios.get('/people').then(({ data }) => {
-      const offline = data
-        .filter((p) => p._id !== id)
-        .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
-  
-console.log(offline);
 
-      // offline.forEach((c) => {
-      //   setImages((prev) => ({
-      //     ...prev,
-      //     [c._id]: c.img
-      //   }));
-      // });
+    console.log(`online`);
+//     axios.get('/people').then(({ data }) => {
+//       const offline = data
+//         .filter((p) => p._id !== id)
+//         .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
   
-      // setofflineUser(offline);
-    });
+// console.log(offline);
+
+//       // offline.forEach((c) => {
+//       //   setImages((prev) => ({
+//       //     ...prev,
+//       //     [c._id]: c.img
+//       //   }));
+//       // });
+  
+//       // setofflineUser(offline);
+//     });
   }, []);
 
  
