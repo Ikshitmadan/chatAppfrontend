@@ -310,6 +310,8 @@ console.log(`newWs is fired`);
 
     console.log(`online`);
     axios.get('/people').then(({ data }) => {
+
+      console.log(data);
       const offline = data
         .filter((p) => p._id !== id)
         .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
@@ -323,7 +325,7 @@ console.log(offline);
       //   }));
       // });
   
-      // setofflineUser(offline);
+      setofflineUser(offline);
     });
   }, []);
 
