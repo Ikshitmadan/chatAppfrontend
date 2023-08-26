@@ -332,16 +332,24 @@ console.log(onlineExcludingMe);
     
   </div>
 
-
+  <div className='overflow-auto h-3/4	'>
  <div className="onlineUsers font-semibold  text-xl  font-sans ">
 
 {Object.keys(onlineExcludingMe).map(key=>(
 <div className={ selectedUser==key?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
 }   onClick={()=>setSelectedUser(key)} >
-  <div  >
-    {onlineUser[key]}
-  </div>
- { key &&<span className=' bg-lime-600 h-2 w-2 	rounded-full'></span>}
+
+
+  <div class="relative">
+    <img class="w-14 h-14 rounded-full" src={images[key]} alt=""/>
+    <span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full">
+    </span>
+</div>
+
+<span>{onlineUser[key]}</span>
+   
+ 
+ {/* { key &&<span className=' bg-lime-600 h-2 w-2 	rounded-full'></span>} */}
   </div>
 ))
 
@@ -357,15 +365,22 @@ console.log(onlineExcludingMe);
 
   <div  className={ selectedUser==user._id?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
 }   onClick={()=>setSelectedUser(user._id)}>
-     <div>
-    {user.username}
-    </div>
-    <span className=' bg-zinc-200	 h-2 w-2 	rounded-full' ></span>
+ 
+ <div class="relative">
+    <img class="w-14	h-14 rounded-full" src={images[user._id]} alt=""/>
+    <span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
+    </span>
+</div>
+
+<span>{user.username}</span>
+   
   </div>
   
 ))
 
 }
+
+</div>
 
 </div>
 
