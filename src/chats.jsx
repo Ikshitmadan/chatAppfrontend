@@ -310,11 +310,11 @@ console.log(`newWs is fired`);
 
     console.log(`online`);
     axios.get('/people').then(({ data }) => {
-//       const offline = data
-//         .filter((p) => p._id !== id)
-//         .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
+      const offline = data
+        .filter((p) => p._id !== id)
+        .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
   
-// console.log(offline);
+console.log(offline);
 
       // offline.forEach((c) => {
       //   setImages((prev) => ({
