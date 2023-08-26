@@ -387,7 +387,7 @@ console.log(images);
 <div className="offlineUsers font-semibold  text-xl  font-sans ">
 
       
-{offlineUser.map(user=>(
+{offlineUser.map(user,idx=>(
 
   <div  className={ selectedUser==user._id?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
 }   onClick={()=>setSelectedUser(user._id)}>
