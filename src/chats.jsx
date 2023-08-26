@@ -363,7 +363,7 @@ console.log(images);
 
   <div class="relative">
    
-<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full ${colors[Math.floor(Math.random() * colors.length)]}`}>
+<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full    ${colors[Math.floor(Math.random() * colors.length)]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{onlineUser[key].charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"/>
 
@@ -393,7 +393,7 @@ console.log(images);
 }   onClick={()=>setSelectedUser(user._id)}>
  
  <div class="relative">
- <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden${colors[Math.floor(Math.random() * colors.length)]}`}>
+ <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full   ${colors[Math.floor(Math.random() * colors.length)]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{user.username.charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
 </span>
