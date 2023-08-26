@@ -314,7 +314,6 @@ console.log(`newWs is fired`);
 
       console.log(offline);
 
-      setofflineUser(offline)
   
      offline.forEach((c) => {
     setImages(prev => ({
@@ -329,7 +328,8 @@ console.log(`newWs is fired`);
   
   
   
-  
+  setofflineUser(offline)
+
       }).catch((err)=>{
         console.log(err);
       })
@@ -343,7 +343,6 @@ console.log(`newWs is fired`);
 console.log(Msg);
 
 console.log(onlineExcludingMe);
-console.log("offline users are"+offlineUser);
 
 
   return (
