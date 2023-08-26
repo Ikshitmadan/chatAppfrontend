@@ -368,6 +368,7 @@ console.log(onlineExcludingMe);
 </div>
 
 <span>{onlineUser[key]}</span>
+<span>{images[key]}</span>
    
  
  {/* { key &&<span className=' bg-lime-600 h-2 w-2 	rounded-full'></span>} */}
