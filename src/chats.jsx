@@ -312,12 +312,14 @@ console.log(`newWs is fired`);
         .filter((p) => p._id !== id)
         .filter((c) => onlineUser.hasOwnProperty(c._id) === false);
   
-      offline.forEach((c) => {
-        setImages((prev) => ({
-          ...prev,
-          [c._id]: c.img
-        }));
-      });
+console.log(offline);
+
+      // offline.forEach((c) => {
+      //   setImages((prev) => ({
+      //     ...prev,
+      //     [c._id]: c.img
+      //   }));
+      // });
   
       // setofflineUser(offline);
     });
