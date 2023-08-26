@@ -313,6 +313,8 @@ console.log(`newWs is fired`);
       const offline=data.filter((p)=>p._id!=id).filter((c)=>onlineUser.hasOwnProperty(c._id)==false);
 
       console.log(offline);
+
+      setofflineUser(offline)
   
      offline.forEach((c) => {
     setImages(prev => ({
@@ -327,7 +329,7 @@ console.log(`newWs is fired`);
   
   
   
-      setofflineUser(offline);
+  
       }).catch((err)=>{
         console.log(err);
       })
@@ -341,7 +343,7 @@ console.log(`newWs is fired`);
 console.log(Msg);
 
 console.log(onlineExcludingMe);
-console.log(offlineUser);
+console.log("offline users are"+offlineUser);
 
 
   return (
