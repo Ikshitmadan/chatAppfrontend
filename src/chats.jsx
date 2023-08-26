@@ -362,9 +362,13 @@ console.log(images);
 
 
   <div class="relative">
-    <img class="w-14 h-14 rounded-full" src={images[key]} alt=""/>
-    <span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full">
-    </span>
+   
+<div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <span class="font-medium text-gray-600 dark:text-gray-300">{onlineUser[key].charAt(0)}</span>
+    <span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"/>
+
+</div>
+
 </div>
 
 <span>{onlineUser[key]}</span>
@@ -389,9 +393,12 @@ console.log(images);
 }   onClick={()=>setSelectedUser(user._id)}>
  
  <div class="relative">
-    <img class="w-14	h-14 rounded-full" src={images[user._id]} alt=""/>
+ <div class="relative inline-flex items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+    <span class="font-medium text-gray-600 dark:text-gray-300">{user.username.charAt(0)}</span>
     <span class="bottom-0 left-7 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
-    </span>
+</span>
+</div>
+
 </div>
 
 <span>{user.username}</span>
