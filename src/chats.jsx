@@ -147,7 +147,7 @@ const Message={
   sender:id
 }
 
-if(file!=null){
+if(file!=null){  
 
   Message.file=file;
 
@@ -310,19 +310,29 @@ console.log(`newWs is fired`);
     axios.get('/people').then(({data})=>{
       // console.log(data);
 
-    const offline=data.filter((p)=>p._id!=id).filter((c)=>onlineUser.hasOwnProperty(c._id)==false);
+      const offline=data.filter((p)=>p._id!=id).filter((c)=>onlineUser.hasOwnProperty(c._id)==false);
 
-    console.log(offline);
-
-
-   offline.forEach((c) => {
-  setImages(prev => ({
-    ...prev,
-    [c._id]: c.img
-  }));
-});
-
-   })},[onlineUser])
+      console.log(offline);
+  
+     offline.forEach((c) => {
+    setImages(prev => ({
+      ...prev,
+      [c._id]: c.img
+    }));
+  });
+  
+  
+  
+  
+  
+  
+  
+      setofflineUser(offline);
+      }).catch((err)=>{
+        console.log(err);
+      })
+  
+   })},[onlineUser]
        
 
  
