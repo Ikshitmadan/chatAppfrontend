@@ -318,12 +318,12 @@ console.log(`newWs is fired`);
   
 console.log(offline);
 
-      // offline.forEach((c) => {
-      //   setImages((prev) => ({
-      //     ...prev,
-      //     [c._id]: c.img
-      //   }));
-      // });
+      offline.forEach((c) => {
+        setImages((prev) => ({
+          ...prev,
+          [c._id]: c.img
+        }));
+      });
   
       setofflineUser(offline);
     });
