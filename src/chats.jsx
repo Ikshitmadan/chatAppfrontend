@@ -354,20 +354,15 @@ const onlineUserColors = useMemo(() => {
 // let n=colors.length;
 // let count=0;
 
-const offlineUserColors = useMemo(() => {
-  const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
-  const offlineColor = {};
+const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
 
-  Object.keys(offlineUser).forEach((key) => {
-    offlineColor[key] = colors[Math.floor(Math.random() * colors.length)];
-  });
 
-  return offlineColor;
-}, [offlineUser]);
-// let n=colors.length;
+
 // let count=0;
 
+let count=-1;
 
+let n=colors.length;
 
   return (
     <div className='h-screen  flex'> 
@@ -395,7 +390,7 @@ const offlineUserColors = useMemo(() => {
 
   <div class="relative">
    
-<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full   ${offlineUserColors[key]}`}>
+<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full   ${colors[++count%n]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{onlineUser[key].charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"/>
 
@@ -425,7 +420,7 @@ const offlineUserColors = useMemo(() => {
 }   onClick={()=>setSelectedUser(user._id)}>
  
  <div class="relative">
- <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full  ${onlineUserColors[key]}`}>
+ <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full  ${colors[(++count)/n]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{user.username.charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
 </span>
