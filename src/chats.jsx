@@ -356,13 +356,13 @@ const onlineUserColors = useMemo(() => {
 
 const offlineUserColors = useMemo(() => {
   const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
-  const onlineColors = {};
+  const offlineColor = {};
 
   Object.keys(offlineUser).forEach((key) => {
-    onlineColors[key] = colors[Math.floor(Math.random() * colors.length)];
+    offlineColor[key] = colors[Math.floor(Math.random() * colors.length)];
   });
 
-  return offlineUserColors;
+  return offlineColor;
 }, [offlineUser]);
 // let n=colors.length;
 // let count=0;
