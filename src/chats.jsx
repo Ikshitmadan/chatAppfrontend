@@ -28,16 +28,6 @@ export const Chats = () => {
 
 
 
-const onlineUserColors = useMemo(() => {
-  const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
-  const onlineColors = {};
-
-  Object.keys(onlineUser).forEach((key) => {
-    onlineColors[key] = colors[Math.floor(Math.random() * colors.length)];
-  });
-
-  return onlineColors;
-}, [onlineUser]);
 
  const showOnline=(data)=>{
 
@@ -348,6 +338,19 @@ console.log(images);
 
 // console.log(onlineExcludingMe);
 
+
+
+
+const onlineUserColors = useMemo(() => {
+  const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
+  const onlineColors = {};
+
+  Object.keys(onlineExcludingMe).forEach((key) => {
+    onlineColors[key] = colors[Math.floor(Math.random() * colors.length)];
+  });
+
+  return onlineColors;
+}, [onlineExcludingMe]);
 // let n=colors.length;
 // let count=0;
 
