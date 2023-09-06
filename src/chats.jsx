@@ -26,7 +26,15 @@ export const Chats = () => {
  const navigate = useNavigate()
  const [images,setImages] = useState({});
 
+ const [typing,setTyping]=useState([]);
 
+
+ const [timer,settimer]=useState(null);
+
+const[groups,setGroups]=useState([]);
+
+const [selectedGroup,setselectedtGroup]=useState(null);
+const[groupMessage,setgroupMessage]=useState([]);
 
 
  const showOnline=(data)=>{
@@ -62,7 +70,25 @@ console.log(`show_online inside `)
 
    const {username,id}=useContext(UserContext);
   
-
+   const sendTypingMessage=()=>{
+    console.log(`enetered sending typing message`);
+          const m1={
+            message:{
+              reciever:selectedUser,
+              text:"typing",
+              type:'typing',
+            
+      
+            }
+      
+          }
+      
+      ws.send(JSON.stringify(m1));
+    
+    
+    
+       }
+    
 
    console.log("my id is "+id);
            
@@ -112,112 +138,311 @@ console.log(data);
   }
 
 
-  const sendMessage=(ev,file)=>{
 
+  
+ async  function sendGroup(){
 
-    // if(file==null && message===""){
-
-    //   alert(`you cant send empty message`);
-
-    //   return ;
-
-    // }
-
-    
-
-
-    console.log(`sending`);
-console.log(ws);
-
-console.log(file);
-
-// console.log(file.name);
-console.log(message);                  
-    ws.send(JSON.stringify({
+  try {
+  
+  
+    const {data}=  await axios.post('http://localhost:5000/group/message',{chatId:selectedGroup,message:message,name:username});
+  
+    console.log(data);
+    const {members}=data
+  console.log(message.length);
+    const messge={
       message:{
-        reciepient:selectedUser,
+        roomId:selectedGroup,
         text:message,
-        file,
-
-        sender:id
+        type:'group',
+        members,
+        name:username
+  
       }
-    }))
-
-const Message={
-  reciepient:selectedUser,
-  text:message,
-   
-  sender:id
-}
-
-if(file!=null){  
-
-  Message.file=file;
-
-}
-
-if (file) {
-
- delete Message['text'];
-    axios.get('/message/'+selectedUser).then(res => {
-
-      console.log(res.data);
-      setMsg(res.data);
-    }).catch(err=>{
-      console.log(err);
-    })
-
-
-
-}
-
-
-else{
-
-  setMsg(prev=>([...prev,Message]))
-
+  
+    }
+  console.log(messge);
+  
+  ws.send(JSON.stringify(messge));
+  
   setMessage('');
-
-}
+    
+  } catch (error) {
+    console.log(error);
+  }
      
   
+    }
   
-   }
-
-
-   const handleMessage=(e)=>{
-
-
-    const messageData=JSON.parse(e.data);
-
-
-    console.log(messageData);
-
-
-    if( messageData.online){
-
-
-      showOnline(messageData.online)
-
-
-
-    }
-    else{
-
-      setMsg(prevMsg => [...prevMsg, messageData]);
-
+  
     
-
-
+    function sendjoin(roomId){
+  
+      const message={
+        sender:id,
+        roomId,
+        ws,
+        type: 'join',
+  
+      }
+  
+      console.log(ws);
+  
+      console.log(message);
+  
+      ws.send(JSON.stringify({
+  
+       message: {
+          sender:id,
+        roomId,
+        ws:{...ws},
+        type: 'join',
+  
+        }
+        
+  
+      }))
+  
+  
+  
+     
+  
     }
+  
+  
+    const sendMessage=(ev,file)=>{
+  
+      console.log(`sending`);
+  console.log(ws);
+  
+  console.log(file);
+  
+  // console.log(file.name);
+  console.log(message);                  
+      ws.send(JSON.stringify({
+        message:{
+          reciepient:selectedUser,
+          text:message,
+          file,
+  
+          sender:id
+        }
+      }))
+  
+  const Message={
+    reciepient:selectedUser,
+    text:message,
+     
+    sender:id
+  }
+  
+  if(file!=null){
+  
+    Message.file=file;
+  
+  }
+  
+  if (file) {
+  
+   delete Message['text'];
+      axios.get('/message/'+selectedUser).then(res => {
+  
+        console.log(res.data);
+        setMsg(res.data);
+      }).catch(err=>{
+        console.log(err);
+      })
+  
+  
+  
+  }
+  
+  
+  else{
+  
+    setMsg(prev=>([...prev,Message]))
+  
+    setMessage('');
+  
+  }
+       
+    
+    
+     }
+  
+  
+  
+     function selectGroup(id){
+  setMsg([]);
+  setselectedtGroup(id);
+  setSelectedUser(null);
+  
+  
+     }
+  
+  
+     const handleMessage=(e)=>{
+  
+  
+      const messageData=JSON.parse(e.data);
+  
+  
+      console.log(messageData +"my name id "+username);
+  
+              
+      if(messageData.type=='join')
+      
+      {
+  
+        console.log(messageData);
+  
+        return;
+  
+      }
+  
+      if(messageData.type=='group'){
+  
+        console.log(`this side courier of group`);
+  
+        console.log(messageData);
+  
+  
+        setgroupMessage((prevGroupMessage)=>[...prevGroupMessage,messageData]);
+        return;
+      }
+      
+  
+      if( messageData.online){
+  
+  
+        showOnline(messageData.online)
+  
+  
+  
+      }
+  
+      if(messageData.type=='typing'){
+  
+        const sender=messageData.sender;
+  
+        console.log('the typer is '+sender);
+      setTyping(prevtype=>[...prevtype,sender])
+  
+      console.log(`people are typing `+sender);
+  
+  
+  
+      }
+      if(messageData.type=='stop'){
+        const {sender}=messageData;
+        let newArr=[];
+  
+    typing.map((id)=>{
+  
+      if(sender!=id){
+  
+        newArr.push(id);
+      }
+  
+    })
+  
+    setTyping(newArr);
+  
+  
+      }
+      else{
+  
+        setMsg(prevMsg => [...prevMsg, messageData]);
+  
+      
+  
+  
+      }
+  
+  
+  
+  
+  
+      console.log(`new message`, JSON.parse(e.data));
+  
+     }
+  
+  
+     function handleInputChange(event) {
+      const newValue = event.target.value;
+      setMessage(newValue);
+  
+      const newTypingTimeout = setTimeout(() => {
+        settimer(null);
+        //sendClear()
+  
+        clearTyping()
+      }, 1000);
+      // Clear any existing typing timeout
+      if (timer) {
+        console.log(`timer exist`);
+  
+        clearTimeout(timer);
+  
+        settimer(newTypingTimeout);
+      }
+      else{
+        console.log(`sending`);
+  
+        sendTypingMessage();
+  
+        settimer(newTypingTimeout);
+  
+      }
+  
+      // Set a new typing timeout to send the message after 1000 milliseconds (1 second)
+    
+  
+  
+      // Save the new typing timeout to state
+      settimer(newTypingTimeout);
+      console.log(timer,"timer");
+    }
+  
+  
+    
+  
+  
+    function clearTyping(){
+  
+      ws.send(JSON.stringify({
+        message:{
+          type:'stop',
+          reciever:selectedUser
+  
+        }
+      }))
+  
+  
+    }
+  
 
 
+    const fetchgroup=()=>{
+      console.log(`fetch`);
+      axios.get('/group').then((res)=>{
+        const {data}=res;
+        const newArray = [];
+    
+    
+        for(let i=0; i<data.length; i++){
+    
+          if(data[i].members.includes(id)){
+            newArray.push(data[i]);
+          }
+        }
+          console.log(newArray);
+        setGroups(newArray);
+       
+      })
+     }
 
 
-
-    console.log(`new message`, JSON.parse(e.data));
-
-   }
 
 
    const reconnect=()=>{
@@ -237,6 +462,7 @@ else{
 
    useEffect(()=>{
 
+    fetchgroup();
 
   console.log(`useEffect is fired`);               
 
@@ -277,6 +503,7 @@ console.log(`newWs is fired`);
 
    useEffect(()=>{
     if(selectedUser){
+      setselectedtGroup(null);
       console.log(`id is ${selectedUser}`);
       axios.get(`/message/${selectedUser}`).then(({data})=>{
             console.log(`data has arrived`);
@@ -287,6 +514,34 @@ console.log(`newWs is fired`);
   ) }
 
    },[selectedUser])
+
+
+
+   useEffect(()=>{
+
+    if(selectedGroup){
+  
+      setSelectedUser(null);
+  
+      console.log(selectedGroup);
+  
+    axios.get(`/groups/${selectedGroup}`).then(({data})=>{
+        console.log(`data has arrived`);
+        console.log(data);
+  
+        
+        setgroupMessage(data.messages);
+  })
+  
+  
+  
+   
+  
+    }
+  
+  },[selectedGroup])
+  
+
 
 
    useEffect(()=>{
@@ -389,6 +644,8 @@ let n=colors.length;
 </div>
 
 <span>{onlineUser[key]}</span>
+{typing.length>0 && typing.indexOf(onlineUser[key])!=-1 && <span>Typing</span>}
+
 {/* <span>{"live" +images[key]}</span> */}
    
  
@@ -489,7 +746,7 @@ let n=colors.length;
 
       {selectedUser && <div className='Search flex gap-1'>
 
-            <input type="text" value={message} onChange={(ev)=>setMessage(ev.target.value)} placeholder='send msg' className='grow border rounded-sm p-2' name="" id=""  />
+            <input type="text" value={message} onChange={handleInputChange}placeholder='send msg' className='grow border rounded-sm p-2' name="" id=""  />
            
             <button onClick={sendMessage} className="bg-blue-500 p-2 text-white rounded-sm">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
