@@ -344,7 +344,7 @@ console.log(images);
 
 // let count=0;
 
-const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500'];
+const colors = ['bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500','bg-sky-600', 'bg-lime-400', 'bg-yellow-600', 'bg-violet-600', 'bg-pink-500', 'bg-rose-500',];
 
 
 
@@ -380,7 +380,7 @@ let n=colors.length;
 
   <div class="relative">
    
-<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full   ${colors[++count%n]}`}>
+<div className={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full   ${colors[count++]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{onlineUser[key].charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"/>
 
@@ -410,7 +410,7 @@ let n=colors.length;
 }   onClick={()=>setSelectedUser(user._id)}>
  
  <div class="relative">
- <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full  ${colors[(++count)/n]}`}>
+ <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full  ${colors[count++]}`}>
     <span class="font-medium text-gray-600 dark:text-gray-300">{user.username.charAt(0)}</span>
     <span class="bottom-0 left-5	 absolute  w-3.5 h-3.5 bg-slate-400	 border-2 border-white dark:border-gray-800 rounded-full">
 </span>
