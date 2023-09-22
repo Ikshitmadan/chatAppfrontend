@@ -1118,7 +1118,7 @@ let n=colors.length;
 
 
 
-<div className="h-full flex  flex-col  h-4/5	 justify-center border-opacity-5">
+<div className="h-4/5 flex  flex-col 	 justify-center border-opacity-5">
 
 
 
