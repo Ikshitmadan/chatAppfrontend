@@ -877,6 +877,11 @@ return;
     
   setSelectedUser(uid);
       try {
+
+if(!map.has(uid)){
+return;
+}
+
         console.log(uid);
   
       const {data}=  await axios.post(`/notification/read`,{
@@ -907,7 +912,9 @@ return;
   
   console.log(uid);
   
-  
+  if(!map.has(uid)){
+    return;
+    }
   
   
   const {data}=  await axios.post(`/notification/read`,{
@@ -982,8 +989,11 @@ let n=colors.length;
   <div className="groups font-semibold  text-xl  font-sans">
 { groups.map(group=>(
   <div  className={ selectedGroup==group._id?'mb-2 cursor-pointer  bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
-}   onClick={()=>selectGroup(group['_id'])}>{group.name}
-  {map.has(group._id) &&<span>{map.get(group._id)}</span>}
+}   onClick={()=>updateGroupNotifications(group['_id'])}>{group.name}
+{map.has(group['_id']) && <span  color='white'  className='h-8 w-8 rounded-full	 align-middle	 flex justify-center  border-4 border-indigo-500/10 bg-green-400'>
+  
+  <span   className='text-white'>{map.get(group['_id'])}</span>
+  </span>}
 
 {/* <span>{group._id}</span> */}
 </div>
@@ -996,7 +1006,7 @@ let n=colors.length;
 
 {Object.keys(onlineExcludingMe).map((key,idx)=>(
 <div className={ selectedUser==key?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
-}   onClick={()=>setSelectedUser(key)} >
+}   onClick={()=>updateeNotifications(key)} >
 
 
   <div class="relative">
@@ -1011,7 +1021,10 @@ let n=colors.length;
 
 <span>{onlineUser[key]}</span>
 {typing.length>0 && typing.indexOf(onlineUser[key])!=-1 && <span>Typing</span>}
-
+{map.has(key) && <span  color='white'  className='h-8 w-8 rounded-full	 align-middle	 flex justify-center  border-4 border-indigo-500/10 bg-green-400'>
+  
+  <span   className='text-white'>{map.get(key)  	}</span>
+  </span>}
 {/* <span>{"live" +images[key]}</span> */}
    
  
@@ -1030,7 +1043,7 @@ let n=colors.length;
 {offlineUser.map((user,idx)=>(
 
   <div  className={ selectedUser==user._id?'mb-2 cursor-pointer bg-cyan-100 flex items-center gap-2':"mb-2 cursor-pointer  flex items-center gap-2 "
-}   onClick={()=>setSelectedUser(user._id)}>
+}   onClick={()=>updateeNotifications(user._id)}>
  
  <div class="relative">
  <div class={`relative inline-flex items-center justify-center w-10 h-10 overflow-hidden rounded-full  ${colors[idx]
@@ -1043,7 +1056,10 @@ let n=colors.length;
 </div>
 
 <span>{user.username}</span>
-   
+{map.has(user._id) && <span  color='white'  className='h-8 w-8 rounded-full	 align-middle	 flex justify-center  border-4 border-indigo-500/10 bg-green-400'>
+  
+  <span   className='text-white'>{map.get(user._id)  	}</span>
+  </span>}
   </div>
   
 ))
