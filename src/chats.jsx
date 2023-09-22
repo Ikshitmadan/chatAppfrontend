@@ -27,7 +27,7 @@ export const Chats = () => {
 
  const parentRef=useRef(null);
  const messageRef=useRef(null);
-
+ const [notificationOpen,setNotificationOpen] = useState(false)
  const navigate = useNavigate()
  const [images,setImages] = useState({});
 
@@ -45,6 +45,7 @@ const [notification,setNotification]=useState([]);
 const [currentnotification,setcurrentnotification]=useState(null);
 
 const [incomingtext,setincomingtext]=useState(null);
+let currentWidth=false;;
 
 
 
@@ -1089,9 +1090,7 @@ let n=colors.length;
 
 </Box>}
   <div className=" z-50">
-   {currentWidth &&(<button  onClick={()=>setOpen(!open)} className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded text-sm px-4 py-2.5 mr-2 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
-  Users
-   </button>)}
+  
 </div>
 <span class="relative inline-block  " onClick={()=>setNotificationOpen(!notificationOpen)}>
   <svg class="w-12 h-12 text-gray-700 fill-current" viewBox="0 0 20 20"><path d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
