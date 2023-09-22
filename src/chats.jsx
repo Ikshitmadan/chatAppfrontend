@@ -13,6 +13,7 @@ import axios from 'axios';
 export const Chats = () => {
 
    const [ws,setws]=useState(null);
+   const [toogle,settoggle]=useState(false);
 
    const [onlineUser,setOnlineUser] = useState({});
 
