@@ -54,7 +54,7 @@ console.log(`hi`);
   
 
     return (
-        <UserContext.Provider value={{username,username, setUsername, id, setId,pending}}>
+        <UserContext.Provider value={{username, setUsername, id, setId,pending}}>
             {children}
         </UserContext.Provider>
     )
